@@ -30,4 +30,13 @@ public class OraController {
     public Ora addOra(@RequestBody Ora ora){
         return service.addOra(ora);
     }
+
+    @PutMapping("/orak/{id}")
+    public Ora replaceOra(@PathVariable("id") int id, @RequestBody Ora ora){
+        return service.replaceOra(id, ora);
+    }
+    @RequestMapping(method=RequestMethod.DELETE, path="/orak/{id}")
+    public void deleteOra(@PathVariable("id") int id){
+        service.deleteOra(id);
+    }
 }

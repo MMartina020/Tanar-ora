@@ -40,4 +40,20 @@ public class OraService {
         }
         return true;
     }
+    public Ora replaceOra(int id, Ora ora) {
+        Optional<Ora> optionalOra = repository.findById(id);
+        if(optionalOra.isPresent()){
+            ora.setId(id);
+            return repository.save(ora);
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+    public void deleteOra(int id) {
+        Optional<Ora> optionalOra = repository.findById(id);
+        if(!optionalOra.isPresent()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        repository.deleteById(id);
+    }
+
 }
